@@ -1,7 +1,8 @@
+/* Setter bakgrunnsfarge*/
 body {
         background: #282b30;
-        color: lightgrey;
      }
+
 
 a {
         text-align: none;
@@ -9,24 +10,19 @@ a {
 
 }
 
+/*  lager en knapp som en svart blokk*/
 .btn{
         background-color: black;
         display: inline-block;
 }
 
-.btn:hover {
-        color: black;
-}
 
-.btn:hover > a {
-        color: black;
-}
-
-
+/*  Senterer tekst*/
 .center {
         text-align: center;
 }
 
+/* Lager en blokk for knappen */
 .block {
         display: block;
         width: 60%;
@@ -38,6 +34,8 @@ a {
         text-align: center;
         margin: auto;
       }
+
+/* roterer et html element 180 grader */
 .rotated {
         transform: rotate(180deg); /* Equal to rotateZ(45deg) */
         background-color: none;
