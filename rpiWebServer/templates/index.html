@@ -1,3 +1,4 @@
+<!--.Hadde noen problemer med å koble opp css og html fil da den var lastet opp i rpi. Det er dermed litt style i html filen-->
 <!DOCTYPE html>
 <head>
    <title>KIC</title>
@@ -7,7 +8,11 @@
 
 
              <br>
-             <img  class = "rotated"; style="transform: rotate(180deg); display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 25%);" src="http://192.168.243.182:8081/" >                <h3 class = "center">
+   
+               <!--livestream fra kamera-->
+             <img  class = "rotated"; style="transform: rotate(180deg); display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 25%);" src="http://192.168.243.182:8081/" >                
+             <!--knapp-->
+             <h3 class = "center">
                      <button style ="display: block; width: 60%;border: none;background-color: grey;padding: 14px 28px;font-size: 16px;cursor: pointer;text-align: center;margin: auto;" >
                      <a href="/KIC/on" class="button">Kjør KIC</a>
                      </button>
