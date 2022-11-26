@@ -8,41 +8,34 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-#define actuators GPIOs
-ledRed = 18
 
-#initialize GPIO status variables
-ledRedSts = 0
+#definerer pin for komunikasjon med Arduino. 
+out = 18
 
-# Define led pins as output
-GPIO.setup(ledRed, GPIO.OUT)
+#definerer output til komunikasjonspinen aka out
+strom = 0
 
-# turn leds OFF
-GPIO.output(ledRed, GPIO.LOW)
+# Setter pin 18 til output. Dette gjør at den sender signaler i stede for å lese av.
+GPIO.setup(out, GPIO.OUT)
+
+#setter output til lav, så KIC ikke kjører med en gang
+GPIO.output(out, GPIO.LOW)
 
 
-@app.route("/")
+@app.route("/") 
 
-@app.route("/<deviceName>/<action>")
+@app.route("/<deviceName>/<action>") #lager variabler for nettsiden adressen
 def action(deviceName, action):
-        if deviceName == 'KIC':
-                actuator = ledRed
-
-
+        #sjekker om action  er on, dette er netttsiden en kommer til om en trykker knappen. Hvis ifsetningen er oppfylt så kjører koden.
         if action == "on":
-                GPIO.output(actuator, GPIO.HIGH)
+                # setter output til høy i 1 sek for så å sette output til lav
+                GPIO.output(out, GPIO.HIGH) 
                 time.sleep(1)
-                GPIO.output(actuator, GPIO.LOW)
-                action = "off"
+                GPIO.output(out, GPIO.LOW)
+                action = "off" 
 
 
-        ledRedSts = GPIO.input(ledRed)
+        return render_template('index.html', **templateData)#går inn i mappen template og bruker filen index.html som html fil for nettsiden.
 
-
-        templateData = {
-              'KIC'  : ledRedSts,
-
-        }
-        return render_template('index.html', **templateData)
-if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=80, debug=True)
+if __name__ == "__main__": 
+   app.run(host='0.0.0.0', port=80, debug=True) #hoster serveren for pythonprogrammet og nettsiden.
